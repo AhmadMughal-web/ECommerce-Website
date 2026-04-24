@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: eshop-socket
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        sync: false
