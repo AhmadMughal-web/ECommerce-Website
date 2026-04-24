@@ -12,7 +12,7 @@ import { Avatar } from "../../assests/asset";
 
 // FIXED: socket was initialized at module level outside component — memory leak
 // FIXED: was hardcoded localhost:4000 — kept as localhost but moved inside component
-const ENDPOINT = "http://localhost:4000/";
+const ENDPOINT = "https://eshop-socket-r3hv.onrender.com";
 
 const DashboardMessages = () => {
   const { seller } = useSelector((state) => state.seller);

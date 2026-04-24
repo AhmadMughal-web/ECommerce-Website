@@ -13,7 +13,7 @@ import { Avatar } from "../assests/asset";
 
 // FIXED: was hardcoded to someone else's Render.com socket server
 // FIXED: was initialized at module level (outside component) — memory leak on every hot reload
-const ENDPOINT = "http://localhost:4000/";
+const ENDPOINT = "https://eshop-socket-r3hv.onrender.com";
 
 const UserInbox = () => {
   const { user, loading } = useSelector((state) => state.user);

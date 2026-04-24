@@ -1,3 +1,2 @@
-export const server = "http://localhost:8000/api/v2"; // FIXED: was pointing to someone else's Vercel deployment
-
-export const backend_url = "http://localhost:8000";
+export const server = "https://eshop-backend-6g79.onrender.com/api/v2";
+export const backend_url = "https://eshop-backend-6g79.onrender.com";
