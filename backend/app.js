@@ -6,7 +6,9 @@ const cors = require("cors");
 const path = require("path");
 
 // FIXED: single dotenv call — was duplicated in original
-require("dotenv").config({ path: "./config/.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "./config/.env" });
+}
 
 // FIXED: CORS now supports both local dev and production
 app.use(

@@ -4,6 +4,12 @@ const cloudinary = require("cloudinary");
 const express = require("express");
 const path = require("path");
 
+// Render par env vars already process.env mein hain
+// Local development ke liye config/.env load karo
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "./config/.env" });
+}
+
 // FIXED: single dotenv config — Render env vars directly inject hoti hain
 // "config/.env" path Render par exist nahi karta — wahan env vars dashboard se aati hain
 require("dotenv").config({ path: "./config/.env" });
