@@ -5,24 +5,23 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const path = require("path");
 
-// FIXED: single dotenv call — was duplicated in original
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config/.env" });
 }
 
-// FIXED: CORS now supports both local dev and production
+// FIXED: both localhost and netlify allowed
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "PRODUCTION"
-        ? process.env.FRONTEND_URL
-        : "http://localhost:3000",
+    origin: [
+      "https://e-shop1-website.netlify.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // FIXED: removed bodyParser dependency — express has this built-in
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
@@ -30,7 +29,6 @@ app.get("/test", (req, res) => {
   res.send("Hello world!");
 });
 
-// IMPORT ROUTES
 const user = require("./controller/user");
 const shop = require("./controller/shop");
 const product = require("./controller/product");
@@ -53,7 +51,6 @@ app.use("/api/v2/payment", payment);
 app.use("/api/v2/order", order);
 app.use("/api/v2/withdraw", withdraw);
 
-// ERROR HANDLING MIDDLEWARE
 app.use(ErrorHandler);
 
 module.exports = app;

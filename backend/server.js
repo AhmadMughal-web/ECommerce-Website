@@ -4,15 +4,11 @@ const cloudinary = require("cloudinary");
 const express = require("express");
 const path = require("path");
 
-// Render par env vars already process.env mein hain
-// Local development ke liye config/.env load karo
+// FIXED: dotenv sirf local development mein load hoga
+// Render par NODE_ENV=PRODUCTION hai — wahan env vars dashboard se aate hain
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "./config/.env" });
 }
-
-// FIXED: single dotenv config — Render env vars directly inject hoti hain
-// "config/.env" path Render par exist nahi karta — wahan env vars dashboard se aati hain
-require("dotenv").config({ path: "./config/.env" });
 
 app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 
@@ -33,7 +29,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// FIXED: fallback to 8000 if PORT not set
 const PORT = process.env.PORT || 8000;
 
 const server = app.listen(PORT, () => {
